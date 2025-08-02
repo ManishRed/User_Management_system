@@ -34,14 +34,14 @@ function Home() {
   }, [navigate]);
 
   const fetchUsers = async () => {
-    const res = await fetch('http://localhost:5000/api/users');
+    const res = await fetch('https://user-management-system-1m4h.onrender.com/api/users');
     const data = await res.json();
     setUsers(data);
   };
 
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
-    await fetch(`http://localhost:5000/api/users/${id}`, { method: 'DELETE' });
+    await fetch(`https://user-management-system-1m4h.onrender.com/api/users/${id}`, { method: 'DELETE' });
     toast.success('User deleted');
     setUsers(users.filter(u => u._id !== id));
   };
@@ -54,7 +54,7 @@ function Home() {
   const handleAddUser = async (e) => {
     e.preventDefault();
 
-    const res = await fetch('http://localhost:5000/api/auth/signup', {
+    const res = await fetch('https://user-management-system-1m4h.onrender.com/api/auth/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newUser)
@@ -75,7 +75,7 @@ function Home() {
   const handleEditUser = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(`http://localhost:5000/api/users/${editUser._id}`, {
+    const res = await fetch(`https://user-management-system-1m4h.onrender.com/api/users/${editUser._id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(editUser)
