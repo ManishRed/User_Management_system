@@ -1,6 +1,6 @@
 const API_BASE = "https://user-management-system-1m4h.onrender.com/api";
 
-export const signUpUser = async (username: string, email: string, password: string) => {
+export const signUpUser = async (username, email, password) => {
   try {
     const response = await fetch(`${API_BASE}/auth/signup`, {
       method: "POST",
@@ -19,7 +19,7 @@ export const signUpUser = async (username: string, email: string, password: stri
   }
 };
 
-export const loginUser = async (email: string, password: string) => {
+export const loginUser = async (emailg, password) => {
   try {
     const response = await fetch(`${API_BASE}/auth/login`, {
       method: "POST",
