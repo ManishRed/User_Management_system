@@ -4,22 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-type SortConfig = {
-  key: string;
-  direction: 'asc' | 'desc';
-} | null;
+
 
 function Home() {
-  const [user, setUser] = useState<any>(null);
-  const [users, setUsers] = useState<any[]>([]);
+  const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
   const [filter, setFilter] = useState('');
   const [roleFilter, setRoleFilter] = useState('all');
-  const [sortConfig, setSortConfig] = useState<SortConfig>(null);
+  const [sortConfig, setSortConfig] = useState(null);
 
   const [showAddUser, setShowAddUser] = useState(false);
   const [newUser, setNewUser] = useState({ username: '', email: '', password: '', role: 'user' });
 
-  const [editUser, setEditUser] = useState<any>(null); // ✅ State for user being edited
+  const [editUser, setEditUser] = useState(null); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,7 +39,7 @@ function Home() {
     setUsers(data);
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
     await fetch(`http://localhost:5000/api/users/${id}`, { method: 'DELETE' });
     toast.success('User deleted');
@@ -54,7 +51,7 @@ function Home() {
     navigate('/');
   };
 
-  const handleAddUser = async (e: React.FormEvent) => {
+  const handleAddUser = async (e) => {
     e.preventDefault();
 
     const res = await fetch('http://localhost:5000/api/auth/signup', {
@@ -75,7 +72,7 @@ function Home() {
     }
   };
 
-  const handleEditUser = async (e: React.FormEvent) => {
+  const handleEditUser = async (e) => {
     e.preventDefault();
 
     const res = await fetch(`http://localhost:5000/api/users/${editUser._id}`, {
@@ -95,8 +92,8 @@ function Home() {
     }
   };
 
-  const requestSort = (key: string) => {
-    let direction: 'asc' | 'desc' = 'asc';
+  const requestSort = (key) => {
+    let direction = 'asc';
     if (sortConfig && sortConfig.key === key && sortConfig.direction === 'asc') {
       direction = 'desc';
     }
@@ -133,7 +130,7 @@ function Home() {
     setRoleFilter('all');
   };
 
-  const getSortArrow = (key: string) => {
+  const getSortArrow = (key) => {
     if (!sortConfig || sortConfig.key !== key) return '⇅';
     return sortConfig.direction === 'asc' ? '↑' : '↓';
   };

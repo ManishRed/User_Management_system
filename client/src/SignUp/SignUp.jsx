@@ -12,7 +12,7 @@ function SignUp() {
     confirmPassword: ''
   });
 
-  const handleSignup = async (e: React.FormEvent) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
 
     if (signupData.password !== signupData.confirmPassword) {
