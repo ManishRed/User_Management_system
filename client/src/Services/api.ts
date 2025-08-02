@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = "https://user-management-system-1m4h.onrender.com/api";
 
 export const signUpUser = async (username: string, email: string, password: string) => {
   try {
